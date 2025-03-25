@@ -38,7 +38,7 @@ OR
 ```
 - also pass php-reverse-shell.py into it and that works too.
 - for both i keep netcat listener open on required port.
-- both work. but we can understand why better from IPPSecs source code analysis which basically calls a bash file. (there is an even better explanation of the actual exploit which is shown below and explains the directory path having ;, abd the weird // and all to bypass the codes restrictions to pass the exploit)
+- both work. but we can understand why better from IPPSecs source code analysis which basically calls a bash file. (there is an even better explanation of the actual exploit which is shown below and explains the directory path having ;, and the weird // and all to bypass the codes restrictions to pass the exploit)
 ```
 #!/bin/bash
 echo "CVE-2022-37706"

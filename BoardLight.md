@@ -8,7 +8,7 @@
 ```
 ffuf -u http://board.htb/ -w /usr/share/seclists/Discovery/Web-Content/big.txt   -H "Host:FUZZ.board.htb" -fs 15949
 ```
-	- We find crm.board.htb and att to /etc/hosts file
+- We find crm.board.htb and att to /etc/hosts file
 - This url leads us to login page.
 	- on searching google we see default creds is admin/admin
 	- We also see the version and on searching online we see it has a vulnerability : PHP code injection
@@ -78,7 +78,7 @@ $dolibarr_main_db_pass='serverfun2$2023!!';
 ```
 cat /etc/passwd | grep "sh$" # or grep "sh" too
 ```
-		- shows user larissa can run bash
+- shows user larissa can run bash
 - ssh into machine with db_pass.
 	- **NOTE: Yes, can fall into a rabbit hole here as db_pass doesn't imply user pass. Definitely check IPPSec for a more detailed explanation but we eventually find some info enumerating. but it helps with the priv escalation anyway. Bottom line the code checks if user belongs to any user or groups and if not it can't execute the exploit. user larissa is part of adm group which is part of that list and thus can.)**
 	- 

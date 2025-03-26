@@ -5,7 +5,7 @@
 - we see a place for user input and on burp suite we catch the request.
 	- can upload file but it does nothing (returns an image)
 	- but we see a location to enter a url
-		- so with entcat listening on a port we put our ip and port there
+		- so with netcat listening on a port we put our ip and port there
 		- we get a response so we know it is vulnerable to server side request forgery (SSRF)
 		- we enumerate the localhost port 80 to see if any local websites. we dont get much but we can brute force and check
 		- send to intrude and select the IP region and use /usr/share/seclists/DNS/Discovery/Infrastructure/common http proxies wordlist.

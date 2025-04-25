@@ -18,12 +18,6 @@ I’ve done some basic cleanup to make the notes readable on GitHub (since they 
 
 
 
-✨  Notes available here:
-
- 🔗 https://github.com/rocknrj/Hack-The-Box
-
-
-
 Feel free to use them as a reference or starting point. Hope it helps someone out there grinding toward OSCP+!
 
 There were about 42 boxes on the list, 4 Active ( 2 linux, 1 windows and 1 AD) which I didn't include here.

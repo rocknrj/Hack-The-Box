@@ -25,33 +25,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 
 ---OUTPUT-UDP---
-PORT      STATE         SERVICE         REASON
-7/udp     open|filtered echo            no-response
-9/udp     open|filtered discard         no-response
-19/udp    open|filtered chargen         no-response
-53/udp    open|filtered domain          no-response
-67/udp    open|filtered dhcps           no-response
-68/udp    open|filtered dhcpc           no-response
-69/udp    open|filtered tftp            no-response
-80/udp    open|filtered http            no-response
-111/udp   open|filtered rpcbind         no-response
-123/udp   open|filtered ntp             no-response
-135/udp   open|filtered msrpc           no-response
-136/udp   open|filtered profile         no-response
-137/udp   open|filtered netbios-ns      no-response
-138/udp   open|filtered netbios-dgm     no-response
-139/udp   open|filtered netbios-ssn     no-response
-161/udp   open|filtered snmp            no-response
-162/udp   open|filtered snmptrap        no-response
-177/udp   open|filtered xdmcp           no-response
-427/udp   open|filtered svrloc          no-response
-445/udp   open|filtered microsoft-ds    no-response
-497/udp   open|filtered retrospect      no-response
-500/udp   open|filtered isakmp          no-response
-514/udp   open|filtered syslog          no-response
-518/udp   open|filtered ntalk           no-response
-520/udp   open|filtered route           no-response
-593/udp   open|filtered http-rpc-epmap  no-response
+<no-response>
 ....
 ```
 - All udp ports are open

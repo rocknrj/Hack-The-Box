@@ -607,9 +607,6 @@ Info: Establishing connection to remote endpoint
 ```
 - We grab the root flag
 -----------
-## Privilege Escalation in Target
-- 
--------
 --------
 ## Extras
 - Meterpreter route to grab password for s.smith

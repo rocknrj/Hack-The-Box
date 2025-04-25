@@ -454,7 +454,8 @@ python pythoncrack.py
 ---OUTPUT---
 Decrypted text: w3lc0meFr31nd
 ```
-- We can add a break here and run the code and hopefully grab the password from it:
+- **Alternate Method (Easier)**
+- Going back to analysing the executable with dnSpy, we can add a break at the line of code decrypting the password (shown above) and run the code and hopefully grab the password from it:
 - We press F9 to add a break point at that command and run the file. Continue till it reaches our break point. We can then step over (with F10) and we should be able to see the password in plain text:
 - ![[Pasted image 20250423121049.png]]
 ```bash

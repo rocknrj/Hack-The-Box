@@ -28,8 +28,8 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 <no-response>
 ....
 ```
-- All udp ports are open
-- This is probably because in windows it doesnt send back an ICMP message so we don't know if its actually open or not hence nmap shows "open|filtered"
+- FOR UDP
+	- This is probably because in windows it doesnt send back an ICMP message so we don't know if its actually open or not hence nmap shows "open|filtered"
 - TCP :
 - FTP
 - Telnet

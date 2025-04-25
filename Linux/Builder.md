@@ -1,6 +1,6 @@
 ## Reconnaissance
 - Nmap scans :
-	```bash
+	```
 nmap -sV -sC -vv -p- 10.10.11.10
 nmap -sU --top-ports=10 -vv 10.10.11.10
 

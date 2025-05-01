@@ -1,5 +1,5 @@
 # Hack-The-Box
-Note: a handful of Linux boxes need to be redone as I started my grind there and initially my note making wasn't up to par.
+Note: a handful of Linux (<5) boxes need to be redone as I started my grind there and initially my note making wasn't up to par.
 
 Sharing my personal notes from the retired Hack The Box machines I’ve completed from TJNull’s OSCP prep list — in case they’re helpful to others on the same path!
 
